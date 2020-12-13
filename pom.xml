@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>tensquare_common</module>
-        <module>tensqural_base</module>
+        <module>tensquare_base</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -28,6 +28,17 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,88 +1,72 @@
 package entity;
 
+import constant.enums.MsgEnum;
+
 /**
  * 返回结果实体类
  *
  * @author: zhouwb
  * @date: 2020/11/29
  */
-public class Result {
+public class Result<T> {
 
     /**
-     * 是否成功
+     * 响应码
      */
-    private Boolean flag;
+    private String msgCode;
 
     /**
-     * 返回码
+     * 响应信息
      */
-    private Integer code;
-
-    /**
-     * 返回消息
-     */
-    private String message;
+    private String msgMessage;
 
     /**
      * 返回数据
      */
-    private Object data;
+    private T data;
 
-    public Result(Boolean flag, Integer code, String message, Object data) {
-        this.flag = flag;
-        this.code = code;
-        this.message = message;
+    public Result(MsgEnum msgEnum, T data) {
+        this.msgCode = msgEnum.getCode();
+        this.msgMessage = msgEnum.getMessage();
         this.data = data;
     }
 
-    public Result(Boolean flag, Integer code, String message) {
-        this.flag = flag;
-        this.code = code;
-        this.message = message;
+    public Result(MsgEnum msgEnum) {
+        this(msgEnum, null);
     }
 
     public Result() {
     }
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "flag=" + flag +
-                ", code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
+    public static Result newInstance(MsgEnum msgEnum, Object data) {
+        return new Result(msgEnum, data);
     }
 
-    public Boolean getFlag() {
-        return flag;
+    public static Result newInstance(MsgEnum msgEnum) {
+        return new Result(msgEnum);
     }
 
-    public void setFlag(Boolean flag) {
-        this.flag = flag;
+    public String getMsgCode() {
+        return msgCode;
     }
 
-    public Integer getCode() {
-        return code;
+    public void setMsgCode(String msgCode) {
+        this.msgCode = msgCode;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public String getMsgMessage() {
+        return msgMessage;
     }
 
-    public String getMessage() {
-        return message;
+    public void setMsgMessage(String msgMessage) {
+        this.msgMessage = msgMessage;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
